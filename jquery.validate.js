@@ -121,7 +121,7 @@
             } else {
                 errorList = [];
                 valid = true;
-                validator = $(this[0].form).validate();
+                validator = $($.validator.getContainer(this[0].form)).validate();
                 this.each(function () {
                     valid = validator.element(this) && valid;
                     if (!valid) {
@@ -140,7 +140,7 @@
 
             // If nothing is selected, return empty object; can't chain anyway
             if (element == null || (element.form == null && !$.validator.getContainer(element))) {
-                console.log('get element rules error.');
+                console.error('get element rules error.form or div.validateContainer is null');
                 return;
             }
 
