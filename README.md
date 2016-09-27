@@ -1,12 +1,8 @@
 # jquery.validate.js
-修改官方代码，支持非form标签包含
-
+## 修改官方代码 version：1.15.1，支持非form标签包，容器增加必须的class：validateContainer。
 例如：
-容器增加必须的class：validateContainer。
-<html>
-<head>
-</head>
-<body>
+
+```html
     <div id="x" class="validateContainer">
         <input data-rule-required="true" data-rule-number="true" data-rule-digits="true" acc="x" Acc2="xx" AcAc="3" acAc="4" name="xx" />
         <input type="submit" value="submit" />
@@ -16,14 +12,13 @@
     <script>
         $("#x").validate();
     </script>
-</body>
-</html>
-
+```
 在官方代码上增加方法：
+```js
 getContainer: function (element) {
             var container = $(element).closest('.validateContainer')[0];
             container = container || element.form;
             return container;
         }
-        
-  替换element.form实现为 $.validator.getContainer(element)
+```
+ 以及替换element.form调用方式为 $.validator.getContainer(element)
